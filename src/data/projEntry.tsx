@@ -6,7 +6,7 @@ import type { GenericTree } from "features/trees/tree";
 import { branchedResetPropagation, createTree } from "features/trees/tree";
 import { globalBus } from "game/events";
 import type { BaseLayer, GenericLayer } from "game/layers";
-import { createLayer } from "game/layers";
+import { createLayer, getLayer } from "game/layers";
 import type { Player } from "game/player";
 import player from "game/player";
 import type { DecimalSource } from "util/bignum";
@@ -118,3 +118,12 @@ export function fixOldSave(
     // eslint-disable-next-line @typescript-eslint/no-empty-function
 ): void {}
 /* eslint-enable @typescript-eslint/no-unused-vars */
+
+const id = "p";
+const layer = createLayer(id, function (this: BaseLayer) {
+    return {
+        display: jsx(() => <>Start</>)
+    };
+});
+
+getInitialLayers(layer)
